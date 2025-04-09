@@ -1385,3 +1385,85 @@ footer {
         display: inline !important;
     }
 }
+
+/* Přidejte tyto PWA styly na konec vašeho stávajícího CSS souboru */
+
+/* Tlačítko pro instalaci PWA */
+.pwa-install-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4a6da7;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.pwa-install-button:hover {
+    background-color: #3a5a8f;
+    transform: scale(1.05);
+}
+
+.pwa-install-button:active {
+    transform: scale(0.98);
+}
+
+/* Offline indikátor */
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ff6b6b;
+    color: white;
+    text-align: center;
+    padding: 6px;
+    font-size: 14px;
+    z-index: 9999;
+    display: none;
+}
+
+.offline-indicator.visible {
+    display: block;
+}
+
+/* Media queries pro správné zobrazení na různých zařízeních */
+@media (display-mode: standalone), (display-mode: minimal-ui) {
+    /* Styly specifické pro PWA režim */
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+    
+    /* Skrýt tlačítko instalace, pokud je aplikace již nainstalována */
+    .pwa-install-button {
+        display: none !important;
+    }
+}
+
+/* Skrýt adresní řádek a další UI prvky prohlížeče v landscape režimu */
+@media screen and (orientation: landscape) {
+    html {
+        height: 100vh;
+    }
+}
+
+/* Dark mode podpora */
+@media (prefers-color-scheme: dark) {
+    .pwa-install-button {
+        background-color: #6e8fc5;
+    }
+    
+    .pwa-install-button:hover {
+        background-color: #5a7bb1;
+    }
+}
