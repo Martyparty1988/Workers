@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pracovní výkazy - Offline</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4a6da7">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .offline-container {
+            max-width: 90%;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            color: #4a6da7;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        button {
+            background-color: #4a6da7;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #3a5a8f;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+            }
+            .offline-container {
+                background-color: #2d2d2d;
+            }
+            h1 {
+                color: #6e8fc5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <img src="icons/offline.svg" alt="Offline" class="offline-icon">
+        <h1>Jste offline</h1>
+        <p>Aplikace Pracovní výkazy vyžaduje připojení k internetu pro tuto akci. 
+           Některé funkce jsou dostupné i v offline režimu.</p>
+        <button onclick="checkConnection()">Zkusit znovu</button>
+    </div>
+
+    <script>
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            } else {
+                alert('Stále jste offline. Zkontrolujte připojení k internetu a zkuste to znovu.');
+            }
+        }
+
+        // Automatické obnovení při detekci připojení
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>
