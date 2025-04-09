@@ -11,6 +11,7 @@ import deductionManager from './deductions.js';
 import debtManager from './debt.js';
 import chartManager from './charts.js';
 import exportManager from './export.js';
+import pwaManager from './pwa.js';
 import { getCurrentDateString } from './utils.js';
 import { loading, notifications } from './ui.js';
 
@@ -34,6 +35,10 @@ class App {
             loading.show();
             
             console.log('Inicializace aplikace...');
+            
+            // Inicializace PWA manageru
+            pwaManager.init();
+            console.log('PWA manager inicializován');
             
             // Inicializace úložiště
             await storageManager.init();
